@@ -55,7 +55,7 @@
 #    return pd.read_csv(io.BytesIO(input_binary_data))
 #
 #
-#def transform(data, model):
+def transform(data, model):
 #    """
 #    This hook can be implemented to adjust logic in the scoring mode.
 #
@@ -69,7 +69,9 @@
 #    :param model: is the deserialized model loaded by drum or by load_model hook , if supplied
 #    :returns: a dataframe after transformation needed
 #    """
-#    return data
+    le = preprocessing.LabelEncoder()
+    data = data.apply(le.fit_transform)
+    return data
 #
 #
 #def score(data, model, **kwargs):
