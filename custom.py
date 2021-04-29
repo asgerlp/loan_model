@@ -103,7 +103,7 @@ def score(data, model, **kwargs):
 #    """
 #
 #    # Creating a dataframe with a column named Predictions with a constant value of 1
-    print(data.iloc[0])
+    #print(data.iloc[0])
     output = model.predict_proba(data)
     predictions = pd.DataFrame(output, columns=[0,1])
 
