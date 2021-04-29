@@ -71,6 +71,7 @@ def transform(data, model):
 #    :param model: is the deserialized model loaded by drum or by load_model hook , if supplied
 #    :returns: a dataframe after transformation needed
 #    """
+    #
     le = preprocessing.LabelEncoder()
     data = data.apply(le.fit_transform)
     return data
@@ -102,9 +103,15 @@ def score(data, model, **kwargs):
 #    """
 #
 #    # Creating a dataframe with a column named Predictions with a constant value of 1
+    print(data.iloc[0])
     output = model.predict_proba(data)
-    print(output.shape)
     predictions = pd.DataFrame(output, columns=[0,1])
+
+    # Overwrite predictions
+    for index, row in data.iterrows():
+        if row['grade'] == 'G':
+            predictions.iloc[index][0] = 0.0
+            predictions.iloc[index][1] = 1.0
     return predictions
 #
 #
