@@ -108,10 +108,10 @@ def score(data, model, **kwargs):
     predictions = pd.DataFrame(output, columns=[0,1])
 
     # Overwrite predictions
-    for index, row in data.iterrows():
-        if row['grade'] == 'G':
-            predictions.iloc[index][0] = 0.0
-            predictions.iloc[index][1] = 1.0
+    #for index, row in data.iterrows():
+    #    if row['grade'] == 'G':
+    #        predictions.iloc[index][0] = 0.0
+    #        predictions.iloc[index][1] = 1.0
     return predictions
 #
 #
